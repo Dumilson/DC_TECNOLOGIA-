@@ -40,7 +40,7 @@ Route::group([
     'prefix' => 'carrinho',
      'middleware' => ['auth']
 ], function(){
-    Route::get('/add/{id_produto?}/{quant?}', [CartController::class , 'index'])->name('index.produtos');
+    Route::post('/add', [CartController::class , 'addCart'])->name('cart.add');
     Route::post('/', [ProdutosController::class , 'store'])->name('store.produto');
 });
 

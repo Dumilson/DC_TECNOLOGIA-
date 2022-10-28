@@ -16,7 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link active" href="  {{route('index.produtos')}} ">
                   <span data-feather="shopping-cart"></span>
-                  Produtos
+                  Produtos <span class="badge badge-info">
+                    {{\Cart::session(Auth::user()->id)->getContent()->count() ?? 0}}
+                  </span>
                 </a>
               </li>
 

@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function addCart($id_producto, $quant = null){
+    public function addCart(Request $request){
 
 
-        $product = Produtos::where("id", $id_producto)->first();
+        $product = Produtos::where("id", $request->id)->first();
         if(!$product){
             return redirect()->withErrors("Produto não encontrado");
         }
         \Cart::session(Auth::user()->id)->add(array(
             'id' => $product->id,
-            'name' => $product->nome_produto,
+            'name' => $product->nome,
             'price' => $product->preco,
-            'quantity' => 1,
+            'quantity' => $request->quantidade ?? 1,
         ));
 
-         return redirect()->with('succes',"Produto Adicionado");
+         return redirect()->back()->with('succes',"Produto Adicionado");
     }
 
 
