@@ -142,6 +142,27 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="form-group">
+                            <label for="clientes">Selecione o Cliente</label>
+                            @foreach ($clientes as $item)
+                            <select id="clientes" class="form-control" name="id_cliente" required>
+                                <option value=" {{$item->id}} "> {{$item->nome_cliente}} </option>
+                            </select>
+                            @endforeach
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientes">Pagamento</label>
+                            <select id="clientes" class="form-control" name="id_cliente" required onclick="getPagamento(this)">
+                                <option value="">Selecione a Forma de Pagamento</option>
+                                <option value="1"> Pagamento a Vista</option>
+                                <option value="2"> Pagamento Parcelado</option>
+                            </select>
+                        </div>
+                        <div class="pagamento">
+
+                        </div>
+
 
                         <div class="m-2" >
                             <b>Total a Pagar: </b> {{number_format(Cart::session(Auth::user()->id)->getTotal(),2,',','.')}}
@@ -157,4 +178,15 @@
             </div>
         </div>
     </div>
+
+    @push('js')
+    <script>
+        function getPagamento(e){
+            if(e.id == 1){
+                alert("1")
+            }
+        }
+    </script>
+    @endpush
+
 @endsection

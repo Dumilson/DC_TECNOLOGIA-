@@ -18,4 +18,3 @@ class Vendas extends Model
         'total_venda',
     ];
 }
-t 
