@@ -7,7 +7,7 @@
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/Dumilson/INFOIDEIAS_TESTE-.git>
+$ git clone <https://github.com/Dumilson/DC_TECNOLOGIA-.git>
 
 
 # Execute a aplicação em modo de desenvolvimento
