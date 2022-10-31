@@ -12,7 +12,7 @@
             <div>
                 @if (\Cart::session(Auth::user()->id)->getContent()->count() > 0)
                     <button class="btn btn-success" data-toggle="modal" data-target="#add-venda">
-                        Registrar  Venda
+                        Registrar Venda
                     </button>
                 @endif
             </div>
@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->nome }}</td>
-                            <td>    {{number_format( $item->preco,2,',','.')}} </td>
+                            <td> {{ number_format($item->preco, 2, ',', '.') }} </td>
                             <td>{{ $item->qtd }}</td>
                             <td>{{ $item->date }}</td>
                             <td>
@@ -134,26 +134,29 @@
                             </thead>
                             <tbody>
                                 @foreach (\Cart::session(Auth::user()->id)->getContent() as $cart)
-                                <tr>
-                                    <td> {{$cart->name}} </td>
-                                    <td> {{$cart->quantity}} </td>
-                                    <td> {{number_format($cart->price,2,',','.')}} RS</td>
-                                </tr>
+                                    <tr>
+                                        <td> {{ $cart->name }} </td>
+                                        <td> {{ $cart->quantity }} </td>
+                                        <td> {{ number_format($cart->price, 2, ',', '.') }} RS</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="form-group">
                             <label for="clientes">Selecione o Cliente</label>
-                            @foreach ($clientes as $item)
+
                             <select id="clientes" class="form-control" name="id_cliente" required>
-                                <option value=" {{$item->id}} "> {{$item->nome_cliente}} </option>
+                                @foreach ($clientes as $item)
+                                    <option value=" {{ $item->id }} "> {{ $item->nome_cliente }} </option>
+                                @endforeach
                             </select>
-                            @endforeach
+
                         </div>
 
                         <div class="form-group">
                             <label for="clientes">Pagamento</label>
-                            <select id="clientes" class="form-control" name="id_cliente" required onclick="getPagamento(this)">
+                            <select id="clientes" class="form-control" name="id_cliente" required
+                                onclick="getPagamento(this)">
                                 <option value="">Selecione a Forma de Pagamento</option>
                                 <option value="1"> Pagamento a Vista</option>
                                 <option value="2"> Pagamento Parcelado</option>
@@ -164,8 +167,9 @@
                         </div>
 
 
-                        <div class="m-2" >
-                            <b>Total a Pagar: </b> {{number_format(Cart::session(Auth::user()->id)->getTotal(),2,',','.')}}
+                        <div class="m-2">
+                            <b>Total a Pagar: </b>
+                            {{ number_format(Cart::session(Auth::user()->id)->getTotal(), 2, ',', '.') }}
                         </div>
                         <div>
                             <button class="btn btn-primary btn-block" type="submit">Salvar</button>
@@ -180,13 +184,12 @@
     </div>
 
     @push('js')
-    <script>
-        function getPagamento(e){
-            if(e.id == 1){
-                alert("1")
+        <script>
+            function getPagamento(e) {
+                if (e.id == 1) {
+                    alert("1")
+                }
             }
-        }
-    </script>
+        </script>
     @endpush
-
 @endsection
